@@ -194,7 +194,7 @@ export default function ExplorerPage({ params, directories, pdfs }: ExplorerPage
               </div>
               <h3 className="text-lg font-medium text-gray-700 mb-1">Empty Folder</h3>
               <p className="text-gray-500 max-w-md mx-auto">
-                This directory doesn't contain any folders or PDF files yet.
+                This directory doesnt contain any folders or PDF files yet.
               </p>
             </div>
           )}
