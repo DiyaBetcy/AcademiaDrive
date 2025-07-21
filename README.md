@@ -9,7 +9,7 @@ The platform takes your existing Google Drive-based file-sharing system and upgr
 
 **AcademiaDrive** allows you to create, upload, and share your notes in a simple, clean way. All you need to do is create a folder structure inside the **public** folder, upload your notes, and the website automatically reflects the changes.
 
-[video](./public/acadmicdrive.gif)
+<img src="./public/acadmicdrive.gif" width="1000" />
 ---
 
 ## **How to Use and Contribute:**
