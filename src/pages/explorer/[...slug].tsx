@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
 import { Metadata } from 'next';
-
+import { useEffect, useState } from 'react';
 
 export const metadata: Metadata = {
   title: 'AcademiaDrive Explorer',
@@ -71,6 +71,16 @@ export async function getStaticProps({ params }: { params: { slug: string[] } })
 export default function ExplorerPage({ params, directories, pdfs }: ExplorerPageProps) {
   const { slug = [] } = params;
   const currentPath = slug.join('/');
+  const baseSlugPath = slug.join('/').toLowerCase(); // 🔑 Normalize folder path to lowercase
+
+  const [driveMap, setDriveMap] = useState<Record<string, string>>({});
+
+  // 🔄 Load Google Drive links
+  useEffect(() => {
+    fetch('/data/driveLinks.json')
+      .then((res) => res.json())
+      .then((data) => setDriveMap(data));
+  }, []);
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4 md:p-8">
