@@ -1,4 +1,4 @@
-import { Folder, FileText,ChevronRight,Home } from 'lucide-react';
+import { Folder, FileText, ChevronRight, Home } from 'lucide-react';
 import fs from 'fs';
 import path from 'path';
 import Link from 'next/link';
@@ -103,7 +103,7 @@ export default function ExplorerPage({ params, directories, pdfs }: ExplorerPage
           {slug.map((segment, index) => (
             <div key={index} className="flex items-center">
               <ChevronRight size={16} className="mx-2 text-gray-400" />
-              <Link 
+              <Link
                 href={`/explorer/${slug.slice(0, index + 1).join('/')}`}
                 className={`${index === slug.length - 1 ? 'text-gray-700 font-medium' : 'text-blue-600 hover:text-blue-800'}`}
               >
@@ -138,12 +138,11 @@ export default function ExplorerPage({ params, directories, pdfs }: ExplorerPage
                 Folders
               </h2>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-                {directories.map((dir) => (
-                  <Link
-                    key={dir.name}
-                    href={`/explorer/${[...slug, dir.name].join('/')}`}
-                    className="group"
-                  >
+                {directories.map((dir) => {
+                  const fullPathKey = `${baseSlugPath}/${dir.name.toLowerCase()}`;
+                  const driveLink = driveMap[fullPathKey];
+
+                  const FolderCard = (
                     <div className="border border-gray-200 rounded-lg p-4 transition-all duration-200 group-hover:border-blue-300 group-hover:shadow-md group-hover:bg-blue-50 h-full flex flex-col items-center">
                       <div className="bg-blue-100 p-3 rounded-full mb-3 text-blue-600 group-hover:text-blue-800">
                         <Folder size={24} />
@@ -152,8 +151,29 @@ export default function ExplorerPage({ params, directories, pdfs }: ExplorerPage
                         {dir.name}
                       </span>
                     </div>
-                  </Link>
-                ))}
+                  );
+
+                  return driveLink ? (
+                    <a
+                      key={dir.name}
+                      href={driveLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group"
+                    >
+                      {FolderCard}
+                    </a>
+                  ) : (
+                    <Link
+                      key={dir.name}
+                      href={`/explorer/${[...slug, dir.name].join('/')}`}
+                      className="group"
+                    >
+                      {FolderCard}
+                    </Link>
+                  );
+                })}
+
               </div>
             </div>
           )}
