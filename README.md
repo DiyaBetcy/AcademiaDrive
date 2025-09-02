@@ -1,4 +1,3 @@
-
 # **AcademiaDrive - University Notes Sharing Platform**
 
 Welcome to **AcademiaDrive**, a platform designed to solve the problem of accessing and sharing study materials within your university or college. If your university doesn't provide easy access to study materials, or if you just want to make your own notes available to others, **AcademiaDrive** is the solution.
